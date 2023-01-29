@@ -3,7 +3,7 @@
 * 支持程序奔溃时对代码的定位
 * 终端交互待完成
 
-<img src="./img/addr2line.png"  height="300" width="420"> 
+<img src="./img/addr2line.png"> 
 
 ### add2line 使用方法
 1. 点击第一个文本框后面的按钮，选择elf文件
