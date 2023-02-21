@@ -25,7 +25,7 @@ class Terminal_TextEdit(QTextEdit):
     def __init__(self) -> None:
         super().__init__()
         self.setStyleSheet("background:black")
-        self.setReadOnly(True);
+        self.setReadOnly(True)
 
     # def keyPressEvent(self, event):
     #     self.setReadOnly(False);
@@ -113,6 +113,10 @@ class Plugin(Plugin_Base):
 
         self.elfFileSelect.clicked.connect(self.elfFileButtonHandle)
         self.toolchainSelect.clicked.connect(self.toolchainButtonHandle)
+
+        self.reFilter.textChanged.connect(self.reFiltertextChangedHandle)
+        self.cmdArg.textChanged.connect(self.cmdArgtextChangedHandle)
+
         return root
 
     def lookup_pc_address(self, pc_addr):  # type: (str) -> None
@@ -124,6 +128,14 @@ class Plugin(Plugin_Base):
         except OSError as e:
             pass
         return None
+    
+    def reFiltertextChangedHandle(self, text):
+            self.config["reFilter"] = text
+            self.reFilter.setText(self.config["reFilter"])
+
+    def cmdArgtextChangedHandle(self, text):
+            self.config["cmdArg"] = text
+            self.cmdArg.setText(self.config["cmdArg"])
 
     def elfFileButtonHandle(self):
         fileName, fileType = QFileDialog.getOpenFileName(None, "elfFile")
